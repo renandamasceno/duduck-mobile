@@ -12,4 +12,9 @@
     <string name="most_expensive_subscriptions_txt">Assinatura mais cara</string>
     <string name="cheapest_subscriptions_txt">Assinatura mais barata</string>
     <string name="settings_icon_txt">settings_icon</string>
+    <string name="title_activity_signup">SignupActivity</string>
+    <string name="register_field_txt">Registrar</string>
+    <string name="repeat_password_field_txt">Repetir senha</string>
+    <string name="or_field_txt">ou</string>
+    <string name="signup_field_txt">Registre-se</string>
 </resources>

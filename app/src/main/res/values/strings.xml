@@ -17,4 +17,6 @@
     <string name="repeat_password_field_txt">Repetir senha</string>
     <string name="or_field_txt">ou</string>
     <string name="signup_field_txt">Registre-se</string>
+    <string name="your_subscriptions_txt">Suas assinaturas</string>
+    <string name="upcoming_expenses_txt">Próximos gastos</string>
 </resources>

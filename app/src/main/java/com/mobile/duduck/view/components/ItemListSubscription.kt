@@ -69,7 +69,7 @@ fun ItemListSubscription(
                     placeholder = painterResource(id = R.drawable.spotify_example),
                     modifier = Modifier
                         .fillMaxSize()
-                        .clip(RoundedCornerShape(12.dp))
+                        .clip(RoundedCornerShape(14.dp))
                 )
             }
             Text(

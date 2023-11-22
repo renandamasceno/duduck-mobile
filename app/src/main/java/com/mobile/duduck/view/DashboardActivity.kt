@@ -1,5 +1,6 @@
 package com.mobile.duduck.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -26,7 +27,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -54,6 +56,8 @@ import com.mobile.duduck.view.components.ItemListSubscription
 import com.mobile.duduck.view.ui.theme.DuduckTheme
 
 class DashboardActivity : ComponentActivity() {
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -62,7 +66,11 @@ class DashboardActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = colorResource(id = R.color.black_background)
                 ) {
-                    CardScreenDashboard()
+                    Scaffold (
+
+                    ){
+                        CardScreenDashboard()
+                    }
                 }
             }
         }
@@ -197,6 +205,7 @@ fun SubscriptionListDashboard(subscriptions: List<Subscription>) {
                 subscriptionName = subscription.name,
                 subscriptionPrice = subscription.price
             )
+            Spacer(modifier = Modifier.padding(vertical = 4.dp))
         }
     }
 }

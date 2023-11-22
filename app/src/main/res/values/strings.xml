@@ -6,4 +6,10 @@
     <string name="remember_me_field_txt">Lembre-me</string>
     <string name="forgot_password_txt">Esqueci a senha</string>
     <string name="duduck_logo_txt">duduck logo</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="month_expenses_txt">Gastos mensais</string>
+    <string name="active_subscriptions_txt">Assinaturas ativas</string>
+    <string name="most_expensive_subscriptions_txt">Assinatura mais cara</string>
+    <string name="cheapest_subscriptions_txt">Assinatura mais barata</string>
+    <string name="settings_icon_txt">settings_icon</string>
 </resources>

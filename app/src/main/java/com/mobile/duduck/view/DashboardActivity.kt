@@ -53,6 +53,7 @@ import com.mobile.duduck.R
 import com.mobile.duduck.model.Subscription
 import com.mobile.duduck.view.components.BoxDashboard
 import com.mobile.duduck.view.components.ItemListSubscription
+import com.mobile.duduck.view.components.MyBottomAppBar
 import com.mobile.duduck.view.ui.theme.DuduckTheme
 
 class DashboardActivity : ComponentActivity() {
@@ -66,9 +67,10 @@ class DashboardActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = colorResource(id = R.color.black_background)
                 ) {
-                    Scaffold (
-
-                    ){
+                    Scaffold(
+                        bottomBar = { MyBottomAppBar() },
+                        containerColor = colorResource(id = R.color.black_background)
+                    ) {
                         CardScreenDashboard()
                     }
                 }
@@ -132,7 +134,6 @@ fun CardScreenDashboard() {
                                 textValue = stringResource(id = R.string.cheapest_subscriptions_txt),
                                 priceTextValue = "R$22"
                             )
-
                         }
                     }
                 }
@@ -185,27 +186,26 @@ fun CardScreenDashboard() {
                         )
                     }
                 }
-
             }
 
             Spacer(modifier = Modifier.padding(top = 18.dp))
-
             SubscriptionListDashboard(subscriptions = Subscription().exampleList())
-
         }
     }
 }
 
 @Composable
 fun SubscriptionListDashboard(subscriptions: List<Subscription>) {
-    LazyColumn(modifier = Modifier.padding(12.dp)) {
-        items(subscriptions) { subscription ->
-            ItemListSubscription(
-                subscriptionImage = subscription.image,
-                subscriptionName = subscription.name,
-                subscriptionPrice = subscription.price
-            )
-            Spacer(modifier = Modifier.padding(vertical = 4.dp))
+    Box(modifier = Modifier.padding(bottom = 90.dp)) {
+        LazyColumn(modifier = Modifier.padding(12.dp)) {
+            items(subscriptions) { subscription ->
+                ItemListSubscription(
+                    subscriptionImage = subscription.image,
+                    subscriptionName = subscription.name,
+                    subscriptionPrice = subscription.price
+                )
+                Spacer(modifier = Modifier.padding(vertical = 4.dp))
+            }
         }
     }
 }
@@ -283,6 +283,8 @@ fun Velocimeter(
     }
 }
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun DashboardActivityPreview() {
@@ -291,7 +293,12 @@ fun DashboardActivityPreview() {
             modifier = Modifier.fillMaxSize(),
             color = colorResource(id = R.color.black_background)
         ) {
-            CardScreenDashboard()
+            Scaffold(
+                bottomBar = { MyBottomAppBar() },
+                containerColor = colorResource(id = R.color.black_background)
+            ) {
+                CardScreenDashboard()
+            }
         }
     }
 }

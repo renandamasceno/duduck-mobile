@@ -21,7 +21,7 @@ import com.mobile.duduck.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextFieldDefault(label: String) {
+fun TextFieldDefault(label: String? = null) {
     var textValue by remember {
         mutableStateOf("")
     }
@@ -29,10 +29,12 @@ fun TextFieldDefault(label: String) {
     TextField(
         value = textValue,
         label = {
-            Text(
-                text = label,
-                color = colorResource(id = R.color.gray_textfields_duduck)
-            )
+            if (label != null) {
+                Text(
+                    text = label,
+                    color = colorResource(id = R.color.gray_textfields_duduck)
+                )
+            }
         },
         shape = MaterialTheme.shapes.large,
         singleLine = true,

@@ -13,5 +13,6 @@
     <color name="gray_dashboard_fields_duduck">#83839C</color>
     <color name="gray_background_secundary_duduck">#353542</color>
     <color name="gray_dashboards_box">#4E4E61</color>
+    <color name="gray_appbar_title">#A2A2B5</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

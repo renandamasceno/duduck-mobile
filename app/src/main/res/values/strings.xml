@@ -20,4 +20,12 @@
     <string name="your_subscriptions_txt">Suas assinaturas</string>
     <string name="upcoming_expenses_txt">Próximos gastos</string>
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="title_activity_payments">PaymentsActivity</string>
+    <string name="payment_title">Pagamento</string>
+    <string name="add_new_card_txt">Adicionar novo cartão</string>
+    <string name="title_activity_add_subscription">AddSubscriptionActivity</string>
+    <string name="add_subscription_title_txt">Adicionar</string>
+    <string name="add_subscription_txt">Adicionar nova assinatura</string>
+    <string name="description_name_txt">Descrição</string>
+    <string name="add_subscription_btn_txt">Adicionar assinatura</string>
 </resources>

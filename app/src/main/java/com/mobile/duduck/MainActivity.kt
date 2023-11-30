@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
@@ -20,9 +21,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mobile.duduck.ui.theme.DuduckTheme
+import com.mobile.duduck.view.CardScreenDashboard
 import com.mobile.duduck.view.DashboardActivity
 import com.mobile.duduck.view.LoginActivity
+import com.mobile.duduck.view.LoginScreen
 import com.mobile.duduck.view.SignupActivity
+import com.mobile.duduck.view.SignupScreen
 import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
@@ -32,24 +36,24 @@ class MainActivity : ComponentActivity() {
             DuduckTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = colorResource(id = R.color.black_background)
                 ) {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "splash") {
                         composable("splash") {
-                            MainActivity()
+                            SplashScreen(navController = navController)
                         }
                         composable("login") {
-                            LoginActivity()
+                            LoginScreen(navController = navController)
                         }
                         composable("signup") {
-                            SignupActivity()
+                            SignupScreen(navController = navController)
                         }
                         composable("dashboard") {
-                            DashboardActivity()
+                            CardScreenDashboard(navController = navController)
                         }
+
                     }
-                    SplashScreen(navController = navController)
                 }
             }
         }
@@ -58,10 +62,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun SplashScreen(navController: NavController) {
-    LaunchedEffect(Unit) {
-        delay(2000)
-        navController.navigate("login")
-    }
 
     Image(
         painter = painterResource(id = R.drawable.splash_screen),
@@ -72,6 +72,11 @@ fun SplashScreen(navController: NavController) {
             .scale(1.0f),
         contentScale = ContentScale.Crop
     )
+
+    LaunchedEffect(key1 = true) {
+        delay(2000)
+        navController.navigate(route = "login")
+    }
 }
 
 @Preview

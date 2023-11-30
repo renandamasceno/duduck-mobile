@@ -49,6 +49,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.mobile.duduck.R
 import com.mobile.duduck.model.Subscription
 import com.mobile.duduck.view.components.BoxDashboard
@@ -57,141 +58,143 @@ import com.mobile.duduck.view.components.MyBottomAppBar
 import com.mobile.duduck.view.ui.theme.DuduckTheme
 
 class DashboardActivity : ComponentActivity() {
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-    @OptIn(ExperimentalMaterial3Api::class)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DuduckTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = colorResource(id = R.color.black_background)
-                ) {
-                    Scaffold(
-                        bottomBar = { MyBottomAppBar() },
-                        containerColor = colorResource(id = R.color.black_background)
-                    ) {
-                        CardScreenDashboard()
-                    }
-                }
-            }
+
         }
     }
 }
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CardScreenDashboard() {
-    Box(
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Card(
-                shape = RoundedCornerShape(
-                    topStart = 0.dp,
-                    topEnd = 0.dp,
-                    bottomStart = 16.dp,
-                    bottomEnd = 16.dp
-                ),
-                colors = CardDefaults.cardColors(
-                    containerColor = colorResource(id = R.color.gray_background_secundary_duduck)
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(300.dp)
+fun CardScreenDashboard(navController: NavController) {
+    DuduckTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = colorResource(id = R.color.black_background)
+        ) {
+            Scaffold(
+                bottomBar = { MyBottomAppBar() },
+                containerColor = colorResource(id = R.color.black_background)
             ) {
                 Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .clickable { TODO() },
-                    contentAlignment = Alignment.Center
+                    modifier = Modifier.fillMaxWidth(),
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.baseline_settings_24),
-                        contentDescription = stringResource(R.string.settings_icon_txt),
-                        modifier = Modifier
-                            .padding(8.dp)
-                            .align(Alignment.TopEnd)
-                    )
-
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Card(
+                            shape = RoundedCornerShape(
+                                topStart = 0.dp,
+                                topEnd = 0.dp,
+                                bottomStart = 16.dp,
+                                bottomEnd = 16.dp
+                            ),
+                            colors = CardDefaults.cardColors(
+                                containerColor = colorResource(id = R.color.gray_background_secundary_duduck)
+                            ),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(300.dp)
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .clickable { TODO() },
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.baseline_settings_24),
+                                    contentDescription = stringResource(R.string.settings_icon_txt),
+                                    modifier = Modifier
+                                        .padding(8.dp)
+                                        .align(Alignment.TopEnd)
+                                )
 
-                        Velocimeter(
-                            value = 20f,
-                            maxValue = 100f,
-                            textValue = "R$22,00"
-                        )
+                                Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
-                        Row {
-                            BoxDashboard(
-                                textValue = stringResource(id = R.string.active_subscriptions_txt),
-                                priceTextValue = "R$22"
-                            )
-                            BoxDashboard(
-                                textValue = stringResource(id = R.string.most_expensive_subscriptions_txt),
-                                priceTextValue = "R$22"
-                            )
-                            BoxDashboard(
-                                textValue = stringResource(id = R.string.cheapest_subscriptions_txt),
-                                priceTextValue = "R$22"
-                            )
+                                    Velocimeter(
+                                        value = 20f,
+                                        maxValue = 100f,
+                                        textValue = "R$22,00"
+                                    )
+
+                                    Row {
+                                        BoxDashboard(
+                                            textValue = stringResource(id = R.string.active_subscriptions_txt),
+                                            priceTextValue = "R$22"
+                                        )
+                                        BoxDashboard(
+                                            textValue = stringResource(id = R.string.most_expensive_subscriptions_txt),
+                                            priceTextValue = "R$22"
+                                        )
+                                        BoxDashboard(
+                                            textValue = stringResource(id = R.string.cheapest_subscriptions_txt),
+                                            priceTextValue = "R$22"
+                                        )
+                                    }
+                                }
+                            }
                         }
+
+                        Spacer(modifier = Modifier.padding(top = 18.dp))
+
+                        Card(
+                            colors = CardDefaults.cardColors(
+                                containerColor = colorResource(id = R.color.black_dashboard_subcard)
+                            ),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(4.dp)
+                                .padding(horizontal = 8.dp)
+                        ) {
+                            Row(
+                                horizontalArrangement = Arrangement.Center,
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Button(
+                                    onClick = { /*TODO*/ },
+                                    modifier = Modifier
+                                        .padding(8.dp)
+                                        .width(160.dp)
+                                        .height(36.dp),
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = colorResource(id = R.color.gray_background_secundary_duduck)
+                                    )
+                                ) {
+                                    Text(
+                                        text = stringResource(R.string.your_subscriptions_txt),
+                                        color = Color.White
+                                    )
+                                }
+
+                                Button(
+                                    onClick = { /*TODO*/ },
+                                    modifier = Modifier
+                                        .padding(8.dp)
+                                        .width(160.dp)
+                                        .height(36.dp),
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = colorResource(id = R.color.gray_background_secundary_duduck)
+                                    )
+                                ) {
+                                    Text(
+                                        text = stringResource(R.string.upcoming_expenses_txt),
+                                        color = Color.White
+                                    )
+                                }
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.padding(top = 18.dp))
+                        SubscriptionListDashboard(subscriptions = Subscription().exampleList())
                     }
                 }
             }
-
-            Spacer(modifier = Modifier.padding(top = 18.dp))
-
-            Card(
-                colors = CardDefaults.cardColors(
-                    containerColor = colorResource(id = R.color.black_dashboard_subcard)
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(4.dp)
-                    .padding(horizontal = 8.dp)
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.Center,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Button(
-                        onClick = { /*TODO*/ },
-                        modifier = Modifier
-                            .padding(8.dp)
-                            .width(160.dp)
-                            .height(36.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = colorResource(id = R.color.gray_background_secundary_duduck)
-                        )
-                    ) {
-                        Text(
-                            text = stringResource(R.string.your_subscriptions_txt),
-                            color = Color.White
-                        )
-                    }
-
-                    Button(
-                        onClick = { /*TODO*/ },
-                        modifier = Modifier
-                            .padding(8.dp)
-                            .width(160.dp)
-                            .height(36.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = colorResource(id = R.color.gray_background_secundary_duduck)
-                        )
-                    ) {
-                        Text(
-                            text = stringResource(R.string.upcoming_expenses_txt),
-                            color = Color.White
-                        )
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.padding(top = 18.dp))
-            SubscriptionListDashboard(subscriptions = Subscription().exampleList())
         }
     }
+
 }
 
 @Composable
@@ -283,22 +286,9 @@ fun Velocimeter(
     }
 }
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Preview
 @Composable
 fun DashboardActivityPreview() {
-    DuduckTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = colorResource(id = R.color.black_background)
-        ) {
-            Scaffold(
-                bottomBar = { MyBottomAppBar() },
-                containerColor = colorResource(id = R.color.black_background)
-            ) {
-                CardScreenDashboard()
-            }
-        }
-    }
+//    CardScreenDashboard()
 }

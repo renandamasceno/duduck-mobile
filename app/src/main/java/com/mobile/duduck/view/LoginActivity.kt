@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
@@ -40,95 +39,103 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.mobile.duduck.R
 import com.mobile.duduck.ui.theme.DuduckTheme
 import com.mobile.duduck.view.components.TextFieldDefault
 
-class LoginActivity : ComponentActivity() {
+class LoginActivity() : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DuduckTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = colorResource(id = R.color.black_background)
-                ) {
-                    LoginScreen()
-                }
-            }
+
         }
     }
 }
 
 @Composable
-fun LoginScreen() {
-
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.duduck_logo),
-            contentDescription = stringResource(R.string.duduck_logo_txt),
-            modifier = Modifier
-                .size(100.dp)
-                .align(Alignment.TopCenter)
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-                .padding(top = 256.dp),
-            verticalArrangement = Arrangement.Center
+fun LoginScreen(navController: NavController) {
+    DuduckTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = colorResource(id = R.color.black_background)
         ) {
 
-            TextFieldDefault(label = stringResource(R.string.e_mail_field_txt))
-            TextFieldDefault(label = stringResource(R.string.password_field_txt))
-            CheckboxDefault()
-
-            val gradientBrush = Brush.radialGradient(
-                colors = listOf(
-                    colorResource(id = R.color.white),
-                    colorResource(id = R.color.orange_duduck)
-                ),
-                center = Offset(0.5f, 0.5f),
-                radius = 0.5f,
-                tileMode = TileMode.Clamp
-            )
-            Button(
-                onClick = { /*TODO*/ },
-                modifier = Modifier
-                    .padding(8.dp)
-                    .background(gradientBrush, shape = MaterialTheme.shapes.extraLarge)
-                    .fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Transparent
-                )
-            ) {
-                Text(
-                    text = stringResource(R.string.enter_field_txt),
-                    color = Color.White
-                )
-            }
             Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 4.dp),
+                modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(
-                        text = stringResource(R.string.or_field_txt),
-                        color = colorResource(id = R.color.gray_textfields_duduck)
-                    )
-                    Text(
-                        text = stringResource(R.string.signup_field_txt),
-                        color = colorResource(id = R.color.gray_textfields_duduck),
-                        textDecoration = TextDecoration.Underline,
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.duduck_logo),
+                        contentDescription = stringResource(R.string.duduck_logo_txt),
                         modifier = Modifier
-                            .padding(top = 8.dp)
-                            .clickable { TODO() }
+                            .size(100.dp)
+                            .align(Alignment.TopCenter)
                     )
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
+                            .padding(top = 256.dp),
+                        verticalArrangement = Arrangement.Center
+                    ) {
+
+                        TextFieldDefault(label = stringResource(R.string.e_mail_field_txt))
+                        TextFieldDefault(label = stringResource(R.string.password_field_txt))
+                        CheckboxDefault()
+
+                        val gradientBrush = Brush.radialGradient(
+                            colors = listOf(
+                                colorResource(id = R.color.white),
+                                colorResource(id = R.color.orange_duduck)
+                            ),
+                            center = Offset(0.5f, 0.5f),
+                            radius = 0.5f,
+                            tileMode = TileMode.Clamp
+                        )
+                        Button(
+                            onClick = { /*TODO*/ },
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .background(gradientBrush, shape = MaterialTheme.shapes.extraLarge)
+                                .fillMaxWidth(),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.Transparent
+                            )
+                        ) {
+                            Text(
+                                text = stringResource(R.string.enter_field_txt),
+                                color = Color.White
+                            )
+                        }
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 4.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Text(
+                                    text = stringResource(R.string.or_field_txt),
+                                    color = colorResource(id = R.color.gray_textfields_duduck)
+                                )
+                                Text(
+                                    text = stringResource(R.string.signup_field_txt),
+                                    color = colorResource(id = R.color.gray_textfields_duduck),
+                                    textDecoration = TextDecoration.Underline,
+                                    modifier = Modifier
+                                        .padding(top = 8.dp)
+                                        .clickable {
+                                            navController.navigate("signup")
+                                        }
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -176,18 +183,5 @@ fun CheckboxDefault() {
 @Preview
 @Composable
 fun LoginActivityPreview() {
-    DuduckTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = colorResource(id = R.color.black_background)
-        ) {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                LoginScreen()
-            }
-        }
-
-    }
+//    LoginScreen()
 }

@@ -17,18 +17,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.mobile.duduck.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopAppBarDefault(title: String) {
+fun TopAppBarDefault(title: String, navController: NavController?) {
     TopAppBar(
         title = {
             Text(
                 text = title,
                 color = colorResource(id = R.color.gray_appbar_title),
                 textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth().padding(end = 8.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(end = 8.dp)
             )
         },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
@@ -36,7 +39,8 @@ fun TopAppBarDefault(title: String) {
 
         ),
         navigationIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
+            if(navController == null) return@TopAppBar
+            IconButton(onClick = { navController.popBackStack() }) {
                 Icon(
                     painter = painterResource(id = R.drawable.baseline_arrow_back),
                     contentDescription = null,
@@ -50,5 +54,5 @@ fun TopAppBarDefault(title: String) {
 @Preview
 @Composable
 fun ToAppBarPreview() {
-    TopAppBarDefault(title = stringResource(R.string.payment_title))
+    TopAppBarDefault(title = stringResource(R.string.payment_title), null)
 }

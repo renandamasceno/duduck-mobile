@@ -2,13 +2,13 @@ package com.mobile.duduck.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Subscription(
-    @SerializedName("id") val id: String? = null,
-    @SerializedName("name") val name: String? = null,
-    @SerializedName("image") val image: String? = null,
-    @SerializedName("price") val price: Double? = null,
-    @SerializedName("description") val description: String? = null
-) {
+    data class Subscription(
+        @SerializedName("id") val id: String? = null,
+        @SerializedName("name") val name: String? = null,
+        @SerializedName("image") val image: String? = null,
+        @SerializedName("price") val price: Double? = null,
+        @SerializedName("description") val description: String? = null
+    ) {
     fun exampleList(): List<Subscription> {
         return listOf(
 //            Subscription(

@@ -98,7 +98,9 @@ fun LoginScreen(navController: NavController) {
                             tileMode = TileMode.Clamp
                         )
                         Button(
-                            onClick = { /*TODO*/ },
+                            onClick = {
+                                navController.navigate("dashboard")
+                            },
                             modifier = Modifier
                                 .padding(8.dp)
                                 .background(gradientBrush, shape = MaterialTheme.shapes.extraLarge)

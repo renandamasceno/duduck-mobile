@@ -52,7 +52,14 @@ android {
 dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1 ")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation ("com.google.dagger:hilt-android:2.44")
+
+    val koinVersion = "3.5.0"
+    implementation ("io.insert-koin:koin-android:${koinVersion}")
+
+    implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
+
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")

@@ -19,11 +19,14 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.mobile.duduck.R
 
 @Composable
-fun MyBottomAppBar() {
-    Box(modifier = Modifier.padding(horizontal = 8.dp).padding(bottom = 10.dp)) {
+fun MyBottomAppBar(navController: NavController? = null) {
+    Box(modifier = Modifier
+        .padding(horizontal = 8.dp)
+        .padding(bottom = 10.dp)) {
 
         BottomAppBar(
             containerColor = colorResource(id = R.color.gray_dashboards_box),
@@ -58,7 +61,7 @@ fun MyBottomAppBar() {
             )
 
             FloatingActionButton(
-                onClick = { /*TODO*/ },
+                onClick = { navController?.navigate("addsubscription") },
                 shape = CircleShape,
                 containerColor = colorResource(id = R.color.orange_duduck),
             ) {
@@ -100,5 +103,5 @@ fun MyBottomAppBar() {
 @Preview
 @Composable
 fun MyBottomAppBarPreview() {
-    MyBottomAppBar()
+    MyBottomAppBar(navController = null)
 }

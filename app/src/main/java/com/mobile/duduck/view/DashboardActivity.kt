@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -56,13 +57,14 @@ import com.mobile.duduck.view.components.BoxDashboard
 import com.mobile.duduck.view.components.ItemListSubscription
 import com.mobile.duduck.view.components.MyBottomAppBar
 import com.mobile.duduck.view.ui.theme.DuduckTheme
+import com.mobile.duduck.viewmodel.SubscriptionViewModel
+
 
 class DashboardActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
         }
     }
 }
@@ -70,14 +72,14 @@ class DashboardActivity : ComponentActivity() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CardScreenDashboard(navController: NavController) {
+fun CardScreenDashboard(navController: NavController? = null) {
     DuduckTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = colorResource(id = R.color.black_background)
         ) {
             Scaffold(
-                bottomBar = { MyBottomAppBar() },
+                bottomBar = { MyBottomAppBar(navController) },
                 containerColor = colorResource(id = R.color.black_background)
             ) {
                 Box(
@@ -205,7 +207,7 @@ fun SubscriptionListDashboard(subscriptions: List<Subscription>) {
                 ItemListSubscription(
                     subscriptionImage = subscription.image,
                     subscriptionName = subscription.name,
-                    subscriptionPrice = subscription.price
+                    subscriptionPrice = subscription.price.toString()
                 )
                 Spacer(modifier = Modifier.padding(vertical = 4.dp))
             }

@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -20,18 +19,24 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.mobile.duduck.service.ApiService
 import com.mobile.duduck.ui.theme.DuduckTheme
 import com.mobile.duduck.view.CardScreenDashboard
-import com.mobile.duduck.view.DashboardActivity
-import com.mobile.duduck.view.LoginActivity
 import com.mobile.duduck.view.LoginScreen
-import com.mobile.duduck.view.SignupActivity
+import com.mobile.duduck.view.ScreenAddSubscription
 import com.mobile.duduck.view.SignupScreen
+import com.mobile.duduck.viewmodel.SubscriptionViewModel
 import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var subscriptionViewModel: SubscriptionViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        subscriptionViewModel = SubscriptionViewModel(apiService = ApiService.getInstance())
+
         setContent {
             DuduckTheme {
                 Surface(
@@ -51,6 +56,12 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("dashboard") {
                             CardScreenDashboard(navController = navController)
+                        }
+                        composable("addsubscription") {
+                            ScreenAddSubscription(
+                                navController = navController,
+                                subscriptionViewModel = subscriptionViewModel
+                            )
                         }
 
                     }
